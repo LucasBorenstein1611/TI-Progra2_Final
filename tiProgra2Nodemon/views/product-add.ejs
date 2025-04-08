@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include("./partials/head") %>
+
+<body>
+	<%- include("./partials/headerLogueado") %>
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Agregar productos</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<h2 class="col-12"></h2>
+			<h2 class="col-12">Agregar producto</h2>
+				<form action="/products/crear" method="GET" enctype="multipart/form-data">
+				<label for="imagen">Imagen:</label>
+				<input type="file" id="imagen" name="imagen"><br>
+
+				<label for="nombre">Nombre del producto:</label>
+				<input type="text" id="nombre" name="nombre" required><br>
+
+				<label for="descripcion">Descripción:</label>
+				<input type="text" id="descripcion" name="descripcion" required><br>
+
+				<button type="submit">Agregar producto</button>
+				</form>
+
+
+	<%- include("./partials/footer") %>
+</body>
+
+</html>

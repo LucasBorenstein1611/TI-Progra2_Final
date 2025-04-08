@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include("./partials/head") %>
+
+  <body>
+    <%- include("./partials/header") %>
+
+    <!-- Resultados -->
+    <div class="container products-wrapper">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="products-title">Resultados de búsqueda</h2>
+
+          <% if (resultados.length > 0) { %>
+            <p>Mostrando resultados para: <strong><%= busqueda %></strong></p>
+          
+            <% for (let i = 0; i < resultados.length; i++) { %>
+              <div class="col-12 col-sm-6 col-lg-4">
+                <div class="product-box">
+                  <img src="/images/products/img-cafetera-moulinex.jpg" alt="<%= resultados[i].nombre %>" class="img-fluid">
+                  <h3><%= resultados[i].nombre %></h3>
+                  <p><%= resultados[i].descripcion %></p>
+                </div>
+              </div>
+            <% } %>
+          <% } else { %>
+            <p>No se encontraron productos para "<%= busqueda %>"</p>
+          <% } %>
+          
+          
+        </div>
+
+        <!-- Productos simulados -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="product-box">
+            <img src="/images/products/img-tv-samsung-smart.jpg" alt="TV Samsung" class="img-fluid">
+            <h3>Smart TV Samsung 43"</h3>
+            <p>Resolución 4K, HDMI, USB</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="product-box">
+            <img src="/images/products/img-macbook-pro-2019.jpg" alt="MacBook" class="img-fluid">
+            <h3>MacBook Pro 2019</h3>
+            <p>Intel Core i7, 16GB RAM</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="product-box">
+            <img src="/images/products/img-samsung-galaxy-s10.jpg" alt="Galaxy S10" class="img-fluid">
+            <h3>Samsung Galaxy S10</h3>
+            <p>Snapdragon, 128GB</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include("./partials/footer") %>
+  </body>
+</html>
