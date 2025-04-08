@@ -27,7 +27,7 @@ const controller = {
     let termino = req.query.busqueda.toLowerCase();
     let resultados = [];
   
-    for (let i = 0; i < producto.length; i++) {
+    for (let i = 0; i < productos.length; i++) {
       if (productos[i].nombre.toLowerCase() === termino) {
         resultados.push(productos[i]);
       }
