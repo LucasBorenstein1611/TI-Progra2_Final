@@ -15,7 +15,7 @@ const data = {
         id: 1,
         nombre: "Teclado Mecánico Redragon Kumara",
         descripcion: "Teclado mecánico RGB con switches blue.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/Kurama2.jpg",
         comentarios: [
           {
             nombreUsuario: "MeliR",
@@ -38,7 +38,7 @@ const data = {
         id: 2,
         nombre: "Mouse Logitech G502 HERO",
         descripcion: "Mouse gamer con sensor HERO 25K y 11 botones.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/mouse.png",
         comentarios: [
           {
             nombreUsuario: "Sofi88",
@@ -61,7 +61,7 @@ const data = {
         id: 3,
         nombre: "Auriculares HyperX Cloud II",
         descripcion: "Sonido envolvente 7.1, micrófono desmontable.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/Hyperx.png",
         comentarios: [
           {
             nombreUsuario: "MaxPower",
@@ -84,7 +84,7 @@ const data = {
         id: 4,
         nombre: "Monitor ASUS TUF 24''",
         descripcion: "144Hz, 1ms, ideal para juegos competitivos.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/ASUSMONITOR.jpg",
         comentarios: [
           {
             nombreUsuario: "JuliTech",
@@ -107,7 +107,7 @@ const data = {
         id: 5,
         nombre: "Silla Gamer Cougar Armor One",
         descripcion: "Diseño ergonómico con soporte lumbar y cervical.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/SILLAGAMER.JPG",
         comentarios: [
           {
             nombreUsuario: "GamerGirl",
@@ -130,7 +130,7 @@ const data = {
         id: 6,
         nombre: "Mousepad XL RGB",
         descripcion: "Tamaño extendido con bordes iluminados.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/mouse.png",
         comentarios: [
           {
             nombreUsuario: "LucasB",
@@ -153,7 +153,7 @@ const data = {
         id: 7,
         nombre: "Control Xbox Series X",
         descripcion: "Compatible con PC y consola, conectividad bluetooth.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/Controlxbox.jpg",
         comentarios: [
           {
             nombreUsuario: "MeliR",
@@ -176,7 +176,7 @@ const data = {
         id: 8,
         nombre: "Webcam Logitech C920",
         descripcion: "Full HD, ideal para streamers.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/webcamlogitechc920.jpg",
         comentarios: [
           {
             nombreUsuario: "Sofi88",
@@ -199,7 +199,7 @@ const data = {
         id: 9,
         nombre: "Micrófono Blue Yeti",
         descripcion: "Calidad profesional, perfecto para streaming.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/blueyeti.jpg",
         comentarios: [
           {
             nombreUsuario: "MaxPower",
@@ -222,7 +222,7 @@ const data = {
         id: 10,
         nombre: "Notebook MSI Gaming",
         descripcion: "Diseño compacto, ideal para juegos en movimiento.",
-        imagen: "/images/products/default-image.png",
+        imagen: "/images/products/netbookmsigamer.jpg",
         comentarios: [
           {
             nombreUsuario: "JuliTech",
