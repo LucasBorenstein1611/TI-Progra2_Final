@@ -21,26 +21,6 @@ const controller = {
       usuario: usuario
     });
   },
-
-  // Búsqueda (resultados estáticos)
-  buscar: function (req, res) {
-    let termino = req.query.busqueda.toLowerCase();
-    let resultados = [];
-  
-    for (let i = 0; i < productos.length; i++) {
-      if (productos[i].nombre.toLowerCase() === termino) {
-        resultados.push(productos[i]);
-      }
-    }
-  
-    res.render('search-results', {
-      busqueda: termino,
-      resultados: resultados
-    });
-  },
-  
-  
-  
 };
 
 module.exports = controller;

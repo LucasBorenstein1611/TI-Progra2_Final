@@ -22,35 +22,17 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<article>
-						  <img src= <%= comentario[0].imagenPerfil %> alt="">
-						  <div class="data">
-							<p class="user">
-							  <strong><%= comentario[0].nombreUsuario %>:</strong>
-							  <%= comentario[0].texto %>
-							</p>
-						  </div>
-						</article>
-					  
-						<article>
-							<img src= <%= comentario[1].imagenPerfil %> alt="">
-							<div class="data">
-							  <p class="user">
-								<strong><%= comentario[1].nombreUsuario %>:</strong>
-								<%= comentario[1].texto %>
-							  </p>
-							</div>
-						  </article>
-					  
-						  <article>
-							<img src= <%= comentario[2].imagenPerfil %> alt="">
-							<div class="data">
-							  <p class="user">
-								<strong><%= comentario[2].nombreUsuario %>:</strong>
-								<%= comentario[2].texto %>
-							  </p>
-							</div>
-						  </article>
+						<% for( let i = 0; i < comentario.length; i++ ) { %>
+							<article>
+								<img src= <%= comentario[i].imagenPerfil %> alt="">
+								<div class="data">
+								  <p class="user">
+									<strong><%= comentario[i].nombreUsuario %>:</strong>
+									<%= comentario[i].texto %>
+								  </p>
+								</div>
+							  </article>
+						<% } %>
 					  </section>
 					  
 

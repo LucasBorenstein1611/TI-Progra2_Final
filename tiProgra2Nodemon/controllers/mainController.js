@@ -3,21 +3,24 @@ const producto = data.productos;
 
 const controller = {
     index: function (req, res) {
-      const productos = producto[0]
-      res.render('index', {
-        nombre: productos.nombre,
-        detalle: productos.descripcion,
-        cantidad: productos.comentarios.length
+      res.render('index', {productos: producto});
+    },
+    // Búsqueda (resultados estáticos)
+    buscar: function (req, res) {
+      let termino = req.query.busqueda.toLowerCase();
+      let resultados = [];
+    
+      for (let i = 0; i < productos.length; i++) {
+        if (productos[i].nombre.toLowerCase() === termino) {
+          resultados.push(productos[i]);
+        }
+      }
+    
+      res.render('search-results', {
+        busqueda: termino,
+        resultados: resultados
       });
-    },
-  
-    login: function (req, res) {
-      res.render('login');
-    },
-  
-    register: function (req, res) {
-      res.render('register');
-    },
+    }
     
   };
   
