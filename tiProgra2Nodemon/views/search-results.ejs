@@ -1,68 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
-  <%- include("./partials/head") %>
+<%- include("./partials/head") %>
 
   <body>
     <%- include("./partials/header") %>
 
-    <!-- Resultados -->
-    <div class="container products-wrapper">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="products-title">Resultados de búsqueda</h2>
-
-          <% if (resultados.length > 0) { %>
-            <p>Mostrando resultados para: <strong><%= busqueda %></strong></p>
-          
-            <% for (let i = 0; i < resultados.length; i++) { %>
+      <!-- Resultados -->
+      <div class="container products-wrapper">
+        <div class="row">
+          <% if (resultados.length> 0) { %>
+            <div class="col-12">
+              <h2 class="products-title">Resultados de búsqueda para: <strong>
+                  <%= busqueda %>
+                </strong> </h2>
+            </div>
+            <% for (let i=0; i < resultados.length; i++) { %>
               <div class="col-12 col-sm-6 col-lg-4">
                 <div class="product-box">
-                  <img src="/images/products/kurama2.jpg" alt="<%= resultados[i].nombre %>" class="img-fluid">
-                  <h3><%= resultados[i].nombre %></h3>
-                  <p><%= resultados[i].descripcion %></p>
+                  <img src="<%= resultados[i].imagen %>" alt="<%= resultados[i].nombre %>" class="img-fluid">
+                  <h3>
+                    <%= resultados[i].nombre %>
+                  </h3>
+                  <p>
+                    <%= resultados[i].descripcion %>
+                  </p>
                 </div>
               </div>
-            <% } %>
-          <% } else { %>
-            <p>No se encontraron productos para "<%= busqueda %>"</p>
-          <% } %>
-          
-          
-        </div>
-
-        <!-- Productos simulados -->
-        <div class="col-12 col-sm-6 col-lg-4">
-          <a href="/products/1">
-            <div class="product-box">
-              <img src="/images/products/ASUSMONITOR.jpg" alt="Monitor Asus" class="img-fluid">
-              <h3>Monitor Asus 144hz 1ms "</h3>
-              <p>Resolución 4K, HDMI, USB</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <a href="/products/1">
-            <div class="product-box">
-              <img src="/images/products/blueyeti.jpg" alt="Microfono Blueyeti" class="img-fluid">
-              <h3>Microfono BlueYeti</h3>
-              <p>Sonido virrual, modo grabacion y registro</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <a href="/products/1">
-            <div class="product-box">
-              <img src="/images/products/Controlxbox.jpg" alt="Galaxy S10" class="img-fluid">
-              <h3>Control Xbox One</h3>
-              <p>Microsoft original, con paletas incluidas</p>
-            </div>
-          </a>
+              <% } %>
+                <% } else { %>
+                  <h2 class="products-title">No se encontraron resultados de búsqueda para: <strong>
+                      <%= busqueda %>
+                    </strong> </h2>
+                  <% } %>
         </div>
       </div>
-    </div>
 
-    <%- include("./partials/footer") %>
+      <%- include("./partials/footer") %>
   </body>
+
 </html>
