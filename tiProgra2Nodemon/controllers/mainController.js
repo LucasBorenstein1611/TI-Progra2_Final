@@ -15,7 +15,7 @@ const controller = {
           resultados.push(productos[i]);
         }
       }
-    
+      
       res.render('search-results', {
         busqueda: termino,
         resultados: resultados

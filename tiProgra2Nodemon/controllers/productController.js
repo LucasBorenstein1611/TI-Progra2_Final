@@ -15,8 +15,8 @@ const controller = {
   },
   
 
-  // Formulario para crear producto
-  crear: function (req, res) {
+  // Formulario para agregar producto
+  agregar: function (req, res) {
     res.render('product-add', {
       usuario: usuario
     });
