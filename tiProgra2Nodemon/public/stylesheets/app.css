@@ -1,5 +1,5 @@
 /*====== Fonts ======*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Raleway:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap");
 
 /*====== Variables ======*/
@@ -9,15 +9,12 @@
     --deep-blue: #012d20;       
     --amarillyoda: #b4e197;     
     --gray: #5f5f5f;            
-    --light-gray: #e5e5da;      
-    --green2: #32cd32;          
-    --base-font-family: 'Roboto', sans-serif;
+    --light-gray: #b3b3ad;      
+    --green2: #31af31;          
+    --base-font-family: 'Raleway', sans-serif;
     --second-font-family: 'Geo', sans-serif;
   }
   
-
-
-
 
 /*====== Basics ======*/
 * {
@@ -31,7 +28,7 @@ body {
   font-size: 10px;
 }
 h1,h2,h3,h4{
-  font-family: var(--second-font-family)
+  font-family: var(--second-font-family);
 }
 
 body {
@@ -50,6 +47,7 @@ ol {
 a {
   display: inline-block;
   text-decoration: none;
+  font-weight: bold;
   color: inherit;
 }
 
