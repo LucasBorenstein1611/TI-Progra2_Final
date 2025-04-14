@@ -1,6 +1,7 @@
 /*====== Fonts ======*/
 @import url("https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Raleway:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bentham&family=Geo:ital@0;1&family=Raleway:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap");
 
 /*====== Variables ======*/
 :root {
@@ -11,8 +12,6 @@
     --gray: #5f5f5f;            
     --light-gray: #b3b3ad;      
     --green2: #31af31;          
-    --base-font-family: 'Raleway', sans-serif;
-    --second-font-family: 'Geo', sans-serif;
   }
   
 
@@ -26,11 +25,16 @@ body {
   min-height: 100vh;
   margin: 0;
   font-size: 10px;
+  font-family: 'Raleway', sans-serif;
 }
-h1,h2,h3,h4{
-  font-family: var(--second-font-family);
+h1,h2,h3,h4 {
+  font-family: 'Geo', sans-serif;
 }
 
+.HeaderPrincipal {
+  font-family: "Teko", sans-serif;
+  font-size: 32px;
+}
 body {
   font-family: var(--base-font-family);
   font-weight: 300;
