@@ -2,7 +2,7 @@
 <html lang="es">
 <%- include("./partials/head") %>
 <body>
-	<%- include("./partials/headerLogueado", {nombre: usuario.usuario}) %>
+	<%- include("./partials/headerLogueado", {nombre: usuario.nombre}) %>
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
@@ -21,6 +21,7 @@
 				</div>
 				<div>
 					<ul class="">
+						<li> <strong>Email:</strong> <%= usuario.email %></li>
 						<li><%= producto.length %> productos </li>
 						<li>200 seguidores</li>
 						<li>300 comentarios</li>

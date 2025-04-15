@@ -2,7 +2,7 @@ const data = {
   usuario: {
     id: 1,
     nombre: "Agos Paladino",
-    email: "agos@mail.com",
+    email: "agos@gmail.com",
     usuario: "agospala",
     contraseña: "123456",
     fechaNacimiento: "1998-05-15",

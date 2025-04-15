@@ -292,6 +292,11 @@ hr {
 }
 
 /*====== Footer ======*/
+
+.tit-footer {
+  font-size: 20px;
+}
+
 .main-footer {
   background-color: #ffffff;
   padding: 20px 0;
