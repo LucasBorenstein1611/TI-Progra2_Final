@@ -7,7 +7,7 @@ const data = {
     contraseña: "123456",
     fechaNacimiento: "1998-05-15",
     documento: 46364172,
-    fotoPerfil: "/images/users/default-image.png"
+    fotoPerfil: "/images/users/user_agos.jpg"
   },
 
   productos: [
