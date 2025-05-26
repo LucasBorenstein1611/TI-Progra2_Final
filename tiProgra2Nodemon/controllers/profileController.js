@@ -1,5 +1,5 @@
 const data = require('../db/data');
-const usuario = data.usuario;
+let usuario = data.usuario;
 const productos = data.productos;
 const db = require("../database/models");
 const bcrypt = require('bcryptjs');

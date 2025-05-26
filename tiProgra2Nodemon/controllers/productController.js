@@ -1,19 +1,37 @@
 const data = require('../db/data');
-const usuario = data.usuario;
+let usuario = data.usuario;
 const productos = data.productos;
+const db = require('../database/models');
+const op = db.Sequelize.Op;
 
 const controller = {
   // Detalle del producto y comentarios
-
   detalle: function (req, res) {
-    const producto = productos[0]; 
-  
-    res.render('product', {
-      producto: producto,
-      comentario: producto.comentarios
+    db.Producto.findByPk(req.params.id, {
+      include: [
+        { association: 'Usuario' },
+        { association: 'Comentarios' }
+      ]
+    })
+    .then(function(producto) {
+      if (producto) {
+        res.render('product', {
+          producto: producto,
+          comentario: producto.Comentarios
+        });
+      } else {
+        res.render('error', {
+          message: 'Producto no encontrado'
+        });
+      }
+    })
+    .catch(function(error) {
+      console.error('Error al buscar el producto:', error);
+      res.render('error', {
+        message: 'Error al cargar el producto'
+      });
     });
   },
-  
 
   // Formulario para agregar producto
   agregar: function (req, res) {
@@ -21,6 +39,37 @@ const controller = {
       usuario: usuario
     });
   },
+
+  // Buscar productos
+  buscar: function (req, res) {
+    const busqueda = req.query.busqueda;
+    
+    db.Producto.findAll({
+      where: {
+        nombre: {
+          [op.like]: `%${busqueda}%`
+        }
+      },
+      include: [
+        { association: 'Usuario' },
+        { association: 'Comentarios' }
+      ]
+    })
+    .then(function(productosEncontrados) {
+      res.render('search-results', {
+        productos: productosEncontrados,
+        busqueda: busqueda
+      });
+    })
+    .catch(function(error) {
+      console.error('Error en la búsqueda:', error);
+      res.render('search-results', {
+        productos: [],
+        busqueda: busqueda,
+        error: 'Hubo un error al realizar la búsqueda'
+      });
+    });
+  }
 };
 
 module.exports = controller;

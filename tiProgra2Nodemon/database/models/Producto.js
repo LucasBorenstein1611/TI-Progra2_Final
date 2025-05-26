@@ -1,5 +1,5 @@
 module.exports = function (sequelize, dataTypes) {
-    let alias = "Comment";
+    let alias = "Producto";
     let cols = {
         id: {
             type: dataTypes.INTEGER(10).UNSIGNED,
@@ -11,25 +11,28 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER(10).UNSIGNED,
             allowNull: false
         },
-        product_id: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
+        imagen: {
+            type: dataTypes.STRING(100)
+        },
+        nombre: {
+            type: dataTypes.STRING(100),
             allowNull: false
         },
-        texto: {
+        descripcion: {
             type: dataTypes.STRING(200)
         }
     };
     let config = {
-        tableName: "comments",
+        tableName: "products",
         timestamps: true,
         paranoid: true
     };
-    let Comment = sequelize.define(alias, cols, config);
+    let Producto = sequelize.define(alias, cols, config);
 
-    Comment.associate = function(models) {
-        Comment.belongsTo(models.User, { foreignKey: 'user_id' });
-        Comment.belongsTo(models.Product, { foreignKey: 'product_id' });
+    Producto.associate = function(models) {
+        Producto.belongsTo(models.Usuario, { foreignKey: 'user_id' });
+        Producto.hasMany(models.Comentarios, { foreignKey: 'product_id' });
     };
 
-    return Comment;
+    return Producto;
 }

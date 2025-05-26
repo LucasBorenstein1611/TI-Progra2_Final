@@ -15,29 +15,35 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="/images/products/kurama2.jpg" alt="" class="product-detail-img">
+					<img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-detail-img">
 					<p class="product-detail-description">
 						<%= producto.descripcion %>
 					</p>
+					<p class="product-detail-price">$<%= producto.precio %></p>
+					<p class="product-detail-seller">Vendedor: <%= producto.Usuario.email %></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for( let i = 0; i < comentario.length; i++ ) { %>
-							<article>
-								<img src= <%= comentario[i].imagenPerfil %> alt="">
-								<div class="data">
-								  <p class="user">
-									<strong><%= comentario[i].nombreUsuario %>:</strong>
-									<%= comentario[i].texto %>
-								  </p>
-								</div>
-							  </article>
+						<h3>Comentarios</h3>
+						<% if (comentario && comentario.length > 0) { %>
+							<% comentario.forEach(function(comentario) { %>
+								<article>
+									<img src="<%= comentario.Usuario.foto %>" alt="<%= comentario.Usuario.email %>">
+									<div class="data">
+										<p class="user">
+											<strong><%= comentario.Usuario.email %>:</strong>
+											<%= comentario.texto %>
+										</p>
+									</div>
+								</article>
+							<% }); %>
+						<% } else { %>
+							<p>No hay comentarios aún</p>
 						<% } %>
-					  </section>
-					  
+					</section>
 
-					<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+					<form class="form" action="/products/<%= producto.id %>/comentario" method="POST">
+						<input class="form-input" type="text" name="texto" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
 					<hr>
