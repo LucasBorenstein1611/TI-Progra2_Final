@@ -13,8 +13,39 @@ const profileController = {
     });
   },
 
-  login: function (req, res) {
+  loginGet: function (req, res) {
+    if (req.session.usuarioLogueado) {
+      return res.redirect('/profile');
+    }
     res.render('login');
+  },
+
+  loginPost: function (req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+    const recordarme = req.body.recordarme;
+
+    if (usuario && usuario.email === email && bcrypt.compareSync(password, usuario.contrasena)) {
+      // Guardar en sesión
+      req.session.usuarioLogueado = usuario;
+      
+      // Si marcó recordarme, guardar en cookie
+      if (recordarme) {
+        res.cookie('recordarUsuario', email, {
+          maxAge: 1000 * 60 * 60 * 24 * 30
+        });
+      }
+      res.redirect('/profile');
+    } else {
+      res.render('login');
+    }
+  },
+
+  logout: function(req, res) {
+    
+    req.session.destroy();
+    res.clearCookie('recordarUsuario');
+    res.redirect('/');
   },
 
   register: function (req, res) {
