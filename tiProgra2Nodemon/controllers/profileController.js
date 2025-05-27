@@ -7,9 +7,18 @@ const bcrypt = require('bcryptjs');
 const profileController = {
 
   index: function (req, res) {
-    res.render('profile', {
-      usuario: usuario,
-      producto: productos
+    if (!req.session.usuarioLogueado) {
+      return res.redirect('/profile/login');
+    }
+    const userId = req.session.usuarioLogueado.id;
+    db.Producto.findAll({
+      where: { user_id: userId }
+    })
+    .then(function(productosDelUsuario) {
+      res.render('profile', {
+        usuario: req.session.usuarioLogueado,
+        producto: productosDelUsuario // así producto.length será el total
+      });
     });
   },
 
@@ -55,9 +64,20 @@ const profileController = {
       createdAt: new Date()
     };
 
-    usuario = newUser;
-    req.session.usuarioLogueado = newUser;
-    res.redirect('/profile');
+    db.Usuario.create(newUser)
+      .then(usuarioCreado => {
+        req.session.usuarioLogueado = {
+          id: usuarioCreado.id,
+          nombre: usuarioCreado.nombre,
+          email: usuarioCreado.email,
+          // ...otros campos si querés
+        };
+        res.redirect('/profile');
+      })
+      .catch(error => {
+        console.error('Error al crear usuario:', error);
+        res.render('register', { error: 'Hubo un error al crear el usuario.' });
+      });
   },
 
   loginGet: function (req, res) {
