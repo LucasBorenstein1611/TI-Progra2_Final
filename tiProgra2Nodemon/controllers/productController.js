@@ -10,25 +10,26 @@ const controller = {
     db.Producto.findByPk(req.params.id, {
       include: [
         { association: 'Usuario' },
-        { association: 'Comentarios' }
+        { association: 'Comentarios', include: [{ association: 'Usuario' }] }
       ]
     })
     .then(function(producto) {
       if (producto) {
         res.render('product', {
-          producto: producto,
-          comentario: producto.Comentarios
+          producto: producto
         });
       } else {
         res.render('error', {
-          message: 'Producto no encontrado'
+          message: 'Producto no encontrado',
+          error: {}
         });
       }
     })
     .catch(function(error) {
       console.error('Error al buscar el producto:', error);
       res.render('error', {
-        message: 'Error al cargar el producto'
+        message: 'Producto no encontrado',
+        error: {}
       });
     });
   },
@@ -56,6 +57,7 @@ const controller = {
       ]
     })
     .then(function(productosEncontrados) {
+      
       res.render('search-results', {
         productos: productosEncontrados,
         busqueda: busqueda

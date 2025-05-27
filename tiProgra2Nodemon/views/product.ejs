@@ -15,18 +15,18 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-detail-img">
+					<img src="/images/products/<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-card_img">
 					<p class="product-detail-description">
 						<%= producto.descripcion %>
 					</p>
-					<p class="product-detail-price">$<%= producto.precio %></p>
+					
 					<p class="product-detail-seller">Vendedor: <%= producto.Usuario.email %></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<h3>Comentarios</h3>
-						<% if (comentario && comentario.length > 0) { %>
-							<% comentario.forEach(function(comentario) { %>
+						<% if (producto.Comentarios && producto.Comentarios.length > 0) { %>
+							<% producto.Comentarios.forEach(function(comentario) { %>
 								<article>
 									<img src="<%= comentario.Usuario.foto %>" alt="<%= comentario.Usuario.email %>">
 									<div class="data">

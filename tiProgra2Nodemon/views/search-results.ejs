@@ -17,10 +17,10 @@
           <% productos.forEach(producto => { %>
             <div class="col-12 col-md-4">
               <div class="product-card">
-                <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-card_img">
+                <img src="/images/products/<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-card_img">
                 <div class="product-card_content">
                   <h3 class="product-card_title"><%= producto.nombre %></h3>
-                  <p class="product-card_price">$<%= producto.precio %></p>
+                  <%= producto.descripcion %>
                   <p class="product-card_seller">
                     Vendedor: <a href="/profile/<%= producto.Usuario.id %>"><%= producto.Usuario.email %></a>
                   </p>

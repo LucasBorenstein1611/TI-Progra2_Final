@@ -47,6 +47,7 @@ const profileController = {
   create: function (req, res) {
     const newUser = {
       email: req.body.email,
+      nombre: req.body.nombre,
       contrasena: bcrypt.hashSync(req.body.password, 10),
       fecha: req.body.fechaNacimiento,
       dni: req.body.documento,
@@ -82,7 +83,12 @@ const profileController = {
     }
 
     // Guardar en sesión
-    req.session.usuarioLogueado = usuario;
+    req.session.usuarioLogueado = {
+      id: usuario.id,
+      nombre: usuario.nombre,
+      email: usuario.email,
+      // ...otros campos si querés
+    };
 
     // Si marcó recordarme, guardar en cookie
     if (recordarme) {

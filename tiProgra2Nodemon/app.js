@@ -27,7 +27,7 @@ app.use(session({
 
 // Middleware para pasar usuario a todas las vistas
 app.use(function(req, res, next) {
-    res.locals.usuarioLogueado = req.session.usuarioLogueado;
+    res.locals.usuarioLogueado = req.session.usuarioLogueado || null;
     next();
 });
 
