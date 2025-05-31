@@ -7,21 +7,11 @@ const bcrypt = require('bcryptjs');
 const profileController = {
 
   index: function (req, res) {
-    if (!req.session.usuarioLogueado) {
-      return res.redirect('/profile/login');
-    }
-    const userId = req.session.usuarioLogueado.id;
-    db.Producto.findAll({
-      where: { user_id: userId }
-    })
-    .then(function(productosDelUsuario) {
-      res.render('profile', {
-        usuario: req.session.usuarioLogueado,
-        producto: productosDelUsuario // así producto.length será el total
-      });
+    res.render('profile', {
+      usuario: usuario,
+      producto: productos
     });
   },
-
 
   register: function (req, res) {
     if (req.session.usuarioLogueado) {
@@ -56,7 +46,6 @@ const profileController = {
   create: function (req, res) {
     const newUser = {
       email: req.body.email,
-      nombre: req.body.nombre,
       contrasena: bcrypt.hashSync(req.body.password, 10),
       fecha: req.body.fechaNacimiento,
       dni: req.body.documento,
@@ -65,18 +54,12 @@ const profileController = {
     };
 
     db.Usuario.create(newUser)
-      .then(usuarioCreado => {
-        req.session.usuarioLogueado = {
-          id: usuarioCreado.id,
-          nombre: usuarioCreado.nombre,
-          email: usuarioCreado.email,
-          // ...otros campos si querés
-        };
+      .then(function(usuarioCreado) {
+        req.session.usuarioLogueado = usuarioCreado;
         res.redirect('/profile');
       })
-      .catch(error => {
-        console.error('Error al crear usuario:', error);
-        res.render('register', { error: 'Hubo un error al crear el usuario.' });
+      .catch(function(error) {
+        res.send(error);
       });
   },
 
@@ -84,7 +67,7 @@ const profileController = {
     if (req.session.usuarioLogueado) {
       return res.redirect('/profile');
     }
-    res.render('login');
+    res.render('login', { error: null });
   },
 
   loginPost: function (req, res) {
@@ -92,32 +75,25 @@ const profileController = {
     const password = req.body.password;
     const recordarme = req.body.recordarme;
 
-    // Validar email
-    if (!usuario || usuario.email !== email) {
-      return res.render('login', { error: 'El email no existe.' });
-    }
-
-    // Validar contraseña
-    if (!bcrypt.compareSync(password, usuario.contrasena)) {
-      return res.render('login', { error: 'La contraseña es incorrecta.' });
-    }
-
-    // Guardar en sesión
-    req.session.usuarioLogueado = {
-      id: usuario.id,
-      nombre: usuario.nombre,
-      email: usuario.email,
-      // ...otros campos si querés
-    };
-
-    // Si marcó recordarme, guardar en cookie
-    if (recordarme) {
-      res.cookie('recordarUsuario', email, {
-        maxAge: 1000 * 60 * 60 * 24 * 30 // 30 días
+    db.Usuario.findOne({ where: { email: email } })
+      .then(function(usuario) {
+        if (!usuario) {
+          return res.render('login', { error: 'El email no existe.' });
+        }
+        if (!bcrypt.compareSync(password, usuario.contrasena)) {
+          return res.render('login', { error: 'La contraseña es incorrecta.' });
+        }
+        req.session.usuarioLogueado = usuario;
+        if (recordarme) {
+          res.cookie('recordarUsuario', email, {
+            maxAge: 1000 * 60 * 60 * 24 * 30 // 30 días
+          });
+        }
+        res.redirect('/profile');
+      })
+      .catch(function(error) {
+        res.send(error);
       });
-    }
-
-    res.redirect('/profile');
   },
 
   logout: function (req, res) {

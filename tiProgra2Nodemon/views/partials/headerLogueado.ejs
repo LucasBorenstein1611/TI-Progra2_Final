@@ -39,11 +39,14 @@
 	
 				<ul class="right-navbar">
 					<li>
-                        <a href="/profile">
-                            <i class="fas fa-user"></i>
-                            <%= usuarioLogueado && usuarioLogueado.nombre ? usuarioLogueado.nombre : 'Invitado' %>
-                        </a>
-                    </li>
+						<span class="user-greeting">¡Hola <%= nombre %>!</span>
+					</li>
+					<li>
+						<a href="/profile">
+							<i class="fas fa-user"></i>
+							<%= nombre %>
+						</a>
+					</li>
 					<li>
 						<form action="/profile/logout" method="get">
 							<button type="submit">
