@@ -4,7 +4,18 @@ const db = require("../database/models");
 
 const controller = {
     index: function (req, res) {
-      res.render('index', {productos: producto});
+      db.Producto.findAll({
+        include: [
+          { model: db.Usuario, attributes: ['email'] },
+          { model: db.Comentarios }
+        ]
+      })
+      .then(function(productos) {
+        res.render('index', { productos: productos });
+      })
+      .catch(function(error) {
+        res.send(error);
+      });
     },
     // Búsqueda (resultados estáticos)
     buscar: function (req, res) {
@@ -22,7 +33,6 @@ const controller = {
         resultados: resultados
       });
     }
-    
   };
   
   module.exports = controller;
