@@ -39,12 +39,12 @@
 	
 				<ul class="right-navbar">
 					<li>
-						<span class="user-greeting">¡Hola <%= nombre %>!</span>
+						<span class="user-greeting">¡Hola <%=locals.usuarioLogueado.nombre%>!</span>
 					</li>
 					<li>
-						<a href="/profile">
+						<a href="/profile/<%= locals.usuarioLogueado.id %>">
 							<i class="fas fa-user"></i>
-							<%= nombre %>
+							<%= locals.usuarioLogueado.nombre %>
 						</a>
 					</li>
 					<li>

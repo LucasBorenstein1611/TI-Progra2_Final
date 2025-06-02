@@ -3,7 +3,11 @@
 <%- include("./partials/head") %>
 
 <body>
-	<%- include("./partials/headerLogueado") %>
+	<% if (locals.usuarioLogueado) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">

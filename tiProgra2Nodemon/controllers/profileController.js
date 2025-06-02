@@ -6,20 +6,9 @@ const bcrypt = require('bcryptjs');
 
 const profileController = {
 
-  index: function (req, res) {
-    if (!req.session.usuarioLogueado) {
-      return res.redirect('/login'); 
-    }
-
-    res.render('profile', {
-      usuario: req.session.usuarioLogueado,
-      producto: productos
-    });
-  },
-
   register: function (req, res) {
     if (req.session.usuarioLogueado) {
-      return res.redirect('/profile');
+      return res.redirect('/profile/' + req.session.usuarioLogueado.id);
     } else {
       res.render('register');
     }
@@ -61,7 +50,7 @@ const profileController = {
     db.Usuario.create(newUser)
       .then(function(usuarioCreado) {
         req.session.usuarioLogueado = usuarioCreado;
-        res.redirect('/profile');
+        res.redirect('/profile/' + usuarioCreado.id);
       })
       .catch(function(error) {
         res.send(error);
@@ -70,7 +59,7 @@ const profileController = {
 
   loginGet: function (req, res) {
     if (req.session.usuarioLogueado) {
-      return res.redirect('/profile');
+      return res.redirect('/profile/' + req.session.usuarioLogueado.id);
     }
     res.render('login', { error: null });
   },
@@ -94,7 +83,7 @@ const profileController = {
             maxAge: 1000 * 60 * 60 * 24 * 30 // 30 días
           });
         }
-        res.redirect('/profile');
+        res.redirect('/profile/' + usuario.id);
       })
       .catch(function(error) {
         res.send(error);
@@ -108,14 +97,21 @@ const profileController = {
   },
 
   show: function (req, res) {
-    db.Usuario.findByPk(req.params.id)
+    db.Usuario.findByPk(req.params.id, {
+      include: [
+        { association: 'productos', include: [
+          { association: 'comentarios' }
+        ] },
+        { association: 'comentarios' }
+      ]
+    })
       .then(function(usuario) {
         if (!usuario) {
           return res.send('Usuario no encontrado');
         }
         res.render('profile', {
           usuario: usuario,
-          producto: []
+          producto: usuario.productos
         });
       })
       .catch(function(error) {

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const profileController = require("../controllers/profileController");
 
-router.get("/", profileController.index);
+
 router.get("/login", profileController.loginGet);
 router.post("/login", profileController.loginPost);
 router.get("/logout", profileController.logout);

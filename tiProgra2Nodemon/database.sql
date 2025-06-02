@@ -5,6 +5,7 @@ CREATE TABLE users (
 
   id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL, 
+  nombre VARCHAR(100) NOT NULL,
   contrasena VARCHAR(100) NOT NULL, 
   fecha DATE NOT NULL, 
   dni INT(10) UNIQUE NOT NULL, 
@@ -45,12 +46,12 @@ CREATE TABLE comments (
 );
 
 
-INSERT INTO users (email, contrasena, fecha, dni, foto) VALUES 
-  ('agos@mail.com', '123456', '1998-05-15', 46364172, 'default-image.png'),
-  ('simon@mail.com', '123456', '1998-05-15', 45364172, 'default-image2.png'),
-  ('lucas@mail.com', '123456', '1998-05-15', 44364172, 'default-image3.png'),
-  ('yoda@mail.com', '123456', '1998-05-15', 45366172, 'default-image4.png'),
-  ('messi@mail.com', '123456', '1998-05-15', 20364172, 'default-image.png');
+INSERT INTO users (email, nombre, contrasena, fecha, dni, foto) VALUES 
+  ('agos@mail.com', 'Agos', '123456', '1998-05-15', 46364172, 'default-image.png'),
+  ('simon@mail.com', 'Simon', '123456', '1998-05-15', 45364172, 'default-image.png'),
+  ('lucas@mail.com', 'Lucas', '123456', '1998-05-15', 44364172, 'default-image.png'),
+  ('yoda@mail.com', 'Yoda', '123456', '1998-05-15', 45366172, 'default-image.png'),
+  ('messi@mail.com', 'Messi', '123456', '1998-05-15', 20364172, 'default-image.png');
  
 INSERT INTO products (user_id, imagen, nombre, descripcion) VALUES
 (1, 'Kurama2.jpg', 'Teclado Mecánico Redragon Kumara', 'Teclado mecánico RGB con switches blue.'),

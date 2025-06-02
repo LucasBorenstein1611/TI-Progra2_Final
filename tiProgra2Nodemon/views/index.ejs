@@ -2,7 +2,11 @@
 <html lang="es">
 <%- include("./partials/head") %>
 <body>
-	<%- include("./partials/header") %>
+	<% if (locals.usuarioLogueado) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
 	
 	<!-- Banner -->
 	<div class="banner">
@@ -26,8 +30,8 @@
 							</figure>
 							<article class="product-box_data">
 								<h2><%= producto.nombre %></h2>
-								<p>Comentarios: <%= producto.Comentarios.length %></p>
-								<p>Usuario: <a href="/profile"><%= producto.Usuario ? producto.Usuario.email : '' %></a></p>
+								<p>Comentarios: <%= producto.comentarios.length %></p>
+								<p>Usuario: <a href="/profile/<%=producto.usuario.id%>"><%=producto.usuario.nombre%></a></p>
 							</article>
 						</a>
 					</section>

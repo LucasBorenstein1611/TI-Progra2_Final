@@ -12,6 +12,10 @@ module.exports = function (sequelize, dataTypes) {
             allowNull: false,
             unique: true
         },
+        nombre: {
+            type: dataTypes.STRING(100),
+            allowNull: false
+        },
         contrasena: {
             type: dataTypes.STRING(100),
             allowNull: false
@@ -27,10 +31,6 @@ module.exports = function (sequelize, dataTypes) {
         },
         foto: {
             type: dataTypes.STRING(200),
-            allowNull: false
-        },
-        nombre: {
-            type: dataTypes.STRING(100),
             allowNull: false
         }
     };

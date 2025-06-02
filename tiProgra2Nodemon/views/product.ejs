@@ -2,7 +2,11 @@
 <html lang="es">
 <%- include("./partials/head") %>
 <body>
-	<%- include("./partials/header") %>
+	<% if (locals.usuarioLogueado) { %>
+		<%- include("./partials/headerLogueado") %>
+	<% } else { %>
+		<%- include("./partials/header") %>
+	<% } %>
 
 	<!-- product detail -->
 	<div class="container products-wrapper">
@@ -19,24 +23,26 @@
 					<p class="product-detail-description">
 						<%= producto.descripcion %>
 					</p>
-					
-					<p class="product-detail-seller">Vendedor: <%= producto.Usuario.email %></p>
+					<a href="/profile/<%= producto.usuario.id %>">	
+						<p class="product-detail-seller">Vendedor: <%= producto.usuario.nombre %></p>
+					</a>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<h3>Comentarios</h3>
-						<% if (producto.Comentarios && producto.Comentarios.length > 0) { %>
-							<% producto.Comentarios.forEach(function(comentario) { %>
+						<% if (producto.comentarios && producto.comentarios.length > 0) { %>
+							<% for(let i = 0; i < producto.comentarios.length; i++) { %>
 								<article>
-									<img src="<%= comentario.Usuario.foto %>" alt="<%= comentario.Usuario.email %>">
+									<img src="/images/users/<%= producto.comentarios[i].usuario.foto %>" alt="<%= producto.comentarios[i].usuario.nombre %>">
 									<div class="data">
 										<p class="user">
-											<strong><%= comentario.Usuario.email %>:</strong>
-											<%= comentario.texto %>
+											<a href="/profile/<%= producto.comentarios[i].usuario.id %>"><strong><%= producto.comentarios[i].usuario.nombre %>:</strong></a>
+											
+											<%= producto.comentarios[i].texto %>
 										</p>
 									</div>
 								</article>
-							<% }); %>
+							<% } %>
 						<% } else { %>
 							<p>No hay comentarios aún</p>
 						<% } %>

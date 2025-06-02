@@ -7,8 +7,8 @@ const controller = {
     index: function (req, res) {
       db.Producto.findAll({
         include: [
-          { model: db.Usuario, attributes: ['email'] },
-          { model: db.Comentarios }
+          { association: 'usuario' },
+          { association: 'comentarios' }
         ]
       })
       .then(function(productos) {
@@ -34,7 +34,6 @@ const controller = {
         ]
       })
       .then(function(productosEncontrados) {
-        res.send(productosEncontrados);
         res.render('search-results', {
           productos: productosEncontrados,
           busqueda: busqueda

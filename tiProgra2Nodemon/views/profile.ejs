@@ -2,10 +2,10 @@
 <html lang="es">
 <%- include("./partials/head") %>
 <body>
-	<% if (usuarioLogueado && usuarioLogueado.id === usuario.id) { %>
-		<%- include("./partials/headerLogueado", {nombre: usuarioLogueado.nombre}) %>
+	<% if (locals.usuarioLogueado) { %>
+		<%- include("./partials/headerLogueado") %>
 	<% } else { %>
-		<%- include("./partials/headerLogueado", {nombre: usuario.nombre}) %>
+		<%- include("./partials/header") %>
 	<% } %>
 
 	<!-- Datos del usuario -->
@@ -28,7 +28,7 @@
 						<li> <strong>Email:</strong> <%= usuario.email %></li>
 						<li><%= producto.length %> productos </li>
 						<li>200 seguidores</li>
-						<li>300 comentarios</li>
+						<li><%= usuario.comentarios.length %> comentarios</li>
 					</ul>
 				</div>
 			</div>

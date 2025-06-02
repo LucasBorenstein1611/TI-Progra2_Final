@@ -35,35 +35,13 @@
             </ul>
 
             <ul class="right-navbar">
-                <% if (usuarioLogueado) { %>
-                    <li>
-                        <span class="user-greeting">¡Hola <%= usuarioLogueado.email %>!</span>
-                    </li>
-                    <li>
-                        <a href="/products/add">
-                            <i class="fas fa-plus"></i> Agregar producto
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/profile">
-                            <i class="fas fa-user"></i> Mi perfil
-                        </a>
-                    </li>
-                    <li>
-                        <form action="/profile/logout" method="get">
-                            <button class="logout" type="submit">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </button>
-                        </form>
-                    </li>
-                <% } else { %>
+                
                     <li>
                         <a href="/profile/register">Creá tu cuenta <i class="far fa-address-card"></i></a>
                     </li>
                     <li>
                         <a href="/profile/login">Ingresá <i class="fas fa-sign-in-alt"></i></a>
                     </li>
-                <% } %>
             </ul>
         </nav>
     </div>
