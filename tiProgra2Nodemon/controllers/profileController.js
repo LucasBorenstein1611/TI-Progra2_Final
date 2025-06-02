@@ -8,7 +8,7 @@ const profileController = {
 
   index: function (req, res) {
     res.render('profile', {
-      usuario: usuario,
+      usuario: req.session.usuarioLogueado,
       producto: productos
     });
   },
