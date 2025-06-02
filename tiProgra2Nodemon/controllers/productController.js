@@ -9,8 +9,8 @@ const controller = {
   detalle: function (req, res) {
     db.Producto.findByPk(req.params.id, {
       include: [
-        { association: 'Usuario' },
-        { association: 'Comentarios', include: [{ association: 'Usuario' }] }
+        { association: 'usuario' },
+        { association: 'comentarios', include: [{ association: 'usuario' }] }
       ]
     })
     .then(function(producto) {
@@ -42,36 +42,7 @@ const controller = {
   },
 
   // Buscar productos
-  buscar: function (req, res) {
-    const busqueda = req.query.busqueda;
-    
-    db.Producto.findAll({
-      where: {
-        nombre: {
-          [op.like]: `%${busqueda}%`
-        }
-      },
-      include: [
-        { association: 'Usuario' },
-        { association: 'Comentarios' }
-      ]
-    })
-    .then(function(productosEncontrados) {
-      
-      res.render('search-results', {
-        productos: productosEncontrados,
-        busqueda: busqueda
-      });
-    })
-    .catch(function(error) {
-      console.error('Error en la búsqueda:', error);
-      res.render('search-results', {
-        productos: [],
-        busqueda: busqueda,
-        error: 'Hubo un error al realizar la búsqueda'
-      });
-    });
-  }
+  
 };
 
 module.exports = controller;
