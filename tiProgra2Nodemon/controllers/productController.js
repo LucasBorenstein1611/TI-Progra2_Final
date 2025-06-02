@@ -5,7 +5,7 @@ const db = require('../database/models');
 const op = db.Sequelize.Op;
 
 const controller = {
-  // Detalle del producto y comentarios
+
   detalle: function (req, res) {
     db.Producto.findByPk(req.params.id, {
       include: [
