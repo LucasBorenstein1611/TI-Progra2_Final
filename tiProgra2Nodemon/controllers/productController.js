@@ -34,15 +34,48 @@ const controller = {
     });
   },
 
-  // Formulario para agregar producto
   agregar: function (req, res) {
+    console.log('Estado de la sesión de usuario al intentar agregar producto:', req.session.usuarioLogueado);
+    if (!req.session.usuarioLogueado) {
+      return res.redirect('/login');
+    }
     res.render('product-add', {
-      usuario: usuario
+      usuario: req.session.usuarioLogueado
     });
   },
 
-  // Buscar productos
-  
+  guardar: function (req, res) {
+    if (!req.session.usuarioLogueado) {
+      return res.redirect('/login');
+    }
+
+    const { nombre, descripcion, imagen } = req.body;
+
+    if (!imagen) {
+      return res.render('error', {
+        message: 'Por favor ingresa el nombre de la imagen',
+        error: {}
+      });
+    }
+
+    // Crear el producto en la base de datos
+    db.Producto.create({
+      user_id: req.session.usuarioLogueado.id,
+      imagen: imagen,
+      nombre: nombre,
+      descripcion: descripcion
+    })
+    .then(function() {
+      res.redirect('/');
+    })
+    .catch(function(error) {
+      console.error('Error al crear el producto:', error);
+      res.render('error', {
+        message: 'Error al crear el producto',
+        error: {}
+      });
+    });
+  }
 };
 
 module.exports = controller;

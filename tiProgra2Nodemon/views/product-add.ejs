@@ -16,15 +16,21 @@
 				<h2 class="products-title">Agregar productos</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-				<form action="/profile" method="GET" enctype="multipart/form-data" class="formulario">
-				<label for="imagen">Imagen:</label>
-				<input type="file" id="imagen" name="imagen"><br>
+				<form action="/products/guardar" method="POST">
+				<div class="form-group">
+					<label for="imagen">Nombre de la imagen (con extensión):</label>
+					<input type="text" id="imagen" name="imagen" placeholder="ejemplo.jpg" required>
+				</div>
 
-				<label for="nombre">Nombre del producto:</label>
-				<input type="text" id="nombre" name="nombre" required><br>
+				<div class="form-group">
+					<label for="nombre">Nombre del producto:</label>
+					<input type="text" id="nombre" name="nombre" required>
+				</div>
 
-				<label for="descripcion">Descripción:</label>
-				<input type="text" id="descripcion" name="descripcion" required><br>
+				<div class="form-group">
+					<label for="descripcion">Descripción corta:</label>
+					<textarea id="descripcion" name="descripcion" required></textarea>
+				</div>
 
 				<button type="submit">Agregar producto</button>
 				</form>
