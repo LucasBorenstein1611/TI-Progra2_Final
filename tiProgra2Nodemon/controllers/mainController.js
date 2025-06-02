@@ -30,7 +30,7 @@ const controller = {
       
       res.render('search-results', {
         busqueda: termino,
-        resultados: resultados
+        productos: resultados
       });
     }
   };

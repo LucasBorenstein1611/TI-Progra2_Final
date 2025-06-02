@@ -7,6 +7,10 @@ const bcrypt = require('bcryptjs');
 const profileController = {
 
   index: function (req, res) {
+    if (!req.session.usuarioLogueado) {
+      return res.redirect('/login'); 
+    }
+
     res.render('profile', {
       usuario: req.session.usuarioLogueado,
       producto: productos

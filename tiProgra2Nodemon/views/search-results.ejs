@@ -14,7 +14,7 @@
 
       <div class="row">
         <% if (productos.length > 0) { %>
-          <% productos.forEach(producto => { %>
+          <% for (let i = 0; i < productos.length; i++) { let producto = productos[i]; %>
             <div class="col-12 col-md-4">
               <div class="product-card">
                 <img src="/images/products/<%= producto.imagen %>" alt="<%= producto.nombre %>" class="product-card_img">
@@ -28,7 +28,7 @@
                 </div>
               </div>
             </div>
-          <% }); %>
+          <% } %>
         <% } else { %>
           <div class="col-12">
             <p class="no-results">No hay resultados para su criterio de búsqueda.</p>
