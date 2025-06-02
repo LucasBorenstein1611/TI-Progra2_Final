@@ -20,17 +20,23 @@ const controller = {
     // Búsqueda (resultados estáticos)
     buscar: function (req, res) {
       let termino = req.query.busqueda.toLowerCase();
-      let resultados = [];
-    
-      for (let i = 0; i < producto.length; i++) {
-        if (producto[i].nombre.toLowerCase().includes(termino)) {
-          resultados.push(producto[i]);
-        }
-      }
-      
-      res.render('search-results', {
-        busqueda: termino,
-        productos: resultados
+
+      db.Producto.findAll({
+        where: {
+          nombre: { [db.Sequelize.Op.like]: `%${termino}%` }
+        },
+        include: [
+          { model: db.Usuario, attributes: ['id', 'email', 'nombre'] }
+        ]
+      })
+      .then(function(productos) {
+        res.render('search-results', {
+          busqueda: termino,
+          productos: productos
+        });
+      })
+      .catch(function(error) {
+        res.send(error);
       });
     }
   };

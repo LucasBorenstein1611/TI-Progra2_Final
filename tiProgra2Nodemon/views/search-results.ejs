@@ -22,7 +22,11 @@
                   <h3 class="product-card_title"><%= producto.nombre %></h3>
                   <%= producto.descripcion %>
                   <p class="product-card_seller">
-                    Vendedor: <a href="/profile/<%= producto.Usuario.id %>"><%= producto.Usuario.email %></a>
+                    <% if (producto.Usuario) { %>
+                      Vendedor: <a href="/profile/<%= producto.Usuario.id %>"><%= producto.Usuario.nombre %></a>
+                    <% } else { %>
+                      Vendedor: <span>Desconocido</span>
+                    <% } %>
                   </p>
                   <a href="/products/<%= producto.id %>" class="product-card_link">Ver detalle</a>
                 </div>

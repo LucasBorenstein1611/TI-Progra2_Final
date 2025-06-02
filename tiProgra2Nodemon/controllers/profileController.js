@@ -50,6 +50,7 @@ const profileController = {
   create: function (req, res) {
     const newUser = {
       email: req.body.email,
+      nombre: req.body.nombre,
       contrasena: bcrypt.hashSync(req.body.password, 10),
       fecha: req.body.fechaNacimiento,
       dni: req.body.documento,
@@ -104,6 +105,22 @@ const profileController = {
     req.session.destroy(function() {
       res.redirect('/');
     });
+  },
+
+  show: function (req, res) {
+    db.Usuario.findByPk(req.params.id)
+      .then(function(usuario) {
+        if (!usuario) {
+          return res.send('Usuario no encontrado');
+        }
+        res.render('profile', {
+          usuario: usuario,
+          producto: []
+        });
+      })
+      .catch(function(error) {
+        res.send(error);
+      });
   }
 };
 
