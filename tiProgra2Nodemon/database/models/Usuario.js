@@ -28,6 +28,10 @@ module.exports = function (sequelize, dataTypes) {
         foto: {
             type: dataTypes.STRING(200),
             allowNull: false
+        },
+        nombre: {
+            type: dataTypes.STRING(100),
+            allowNull: false
         }
     };
     let config = {
