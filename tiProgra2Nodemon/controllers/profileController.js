@@ -10,7 +10,7 @@ const profileController = {
     if (req.session.usuarioLogueado) {
       return res.redirect('/profile/' + req.session.usuarioLogueado.id);
     } else {
-      res.render('register');
+      res.render('register', { error: null });
     }
   },
 
@@ -53,7 +53,11 @@ const profileController = {
         res.redirect('/profile/' + usuarioCreado.id);
       })
       .catch(function(error) {
-        res.send(error);
+        if (error.name === 'SequelizeUniqueConstraintError') {
+          // Renderiza la vista de registro con el mensaje de error
+          return res.render('register', { error: 'El email ya está registrado.' });
+        }
+        res.status(500).send('Ocurrió un error al crear el usuario.');
       });
   },
 
