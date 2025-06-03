@@ -82,7 +82,6 @@ const profileController = {
           return res.render('login', { error: 'La contraseña es incorrecta.' });
         }
         req.session.usuarioLogueado = usuario;
-        res.locals.usuarioLogueado = usuario;
         if (recordarme) {
           res.cookie('recordarUsuario', email, {
             maxAge: 1000 * 60 * 60 * 24 * 30 // 30 días
@@ -114,8 +113,6 @@ const profileController = {
         if (!usuario) {
           return res.send('Usuario no encontrado');
         }
-        req.session.usuarioLogueado = usuario;
-        res.locals.usuarioLogueado = usuario;
 
         res.render('profile', {
           usuario: usuario,
