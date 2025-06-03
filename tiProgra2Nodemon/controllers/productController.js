@@ -75,6 +75,34 @@ const controller = {
         error: {}
       });
     });
+  },
+
+  agregarComentario: function(req, res) {
+    if (!req.session.usuarioLogueado) {
+      return res.redirect('/profile/login');
+    }
+
+    const product_id = req.params.id;
+    const user_id = req.session.usuarioLogueado.id;
+    const texto = req.body.texto;
+
+    if (!texto) {
+        return res.redirect('/products/' + product_id);
+    }
+
+    db.Comentarios.create({
+      product_id: product_id,
+      user_id: user_id,
+      texto: texto,
+      createdAt: new Date() 
+    })
+    .then(function() {
+      res.redirect('/products/' + product_id);
+    })
+    .catch(function(error) {
+      console.error('Error al crear el comentario:', error);
+      res.redirect('/products/' + product_id);
+    });
   }
 };
 
