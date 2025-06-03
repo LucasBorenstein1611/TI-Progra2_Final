@@ -12,7 +12,7 @@
 				
 	
 				<div class="col-7 col-md-6">
-					<form action="/products/buscar" method="GET" class="search-form">
+					<form action="/buscar" method="GET" class="search-form">
 						<input type="text" name="busqueda" placeholder="Buscar productos, marcas y más"
 							class="search-form_input">
 						<button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
@@ -38,29 +38,30 @@
 				</ul>
 	
 				<ul class="right-navbar">
-					<li>
-						<span class="user-greeting">¡Hola <%=locals.usuarioLogueado.nombre%>!</span>
-					</li>
-					<li>
-						<a href="/profile/<%= locals.usuarioLogueado.id %>">
-							<i class="fas fa-user"></i>
-							<%= locals.usuarioLogueado.nombre %>
-						</a>
-					</li>
-					<li>
-						<form action="/profile/logout" method="get">
-							<button type="submit">
-								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
-							</button>
-						</form>
-					</li>
-					<!-- Solo deslogueado <li>
-						<a href="register.html">Creá tu cuenta <i class="far fa-address-card"></i>
-						</a>
-					</li>
-					<li>
-						<a href="login.html">Ingresá <i class="fas fa-sign-in-alt"></i></a>
-					</li> -->
+                    <% if (locals.usuarioLogueado) { %>
+                        <li>
+                            <a href="/profile/<%= locals.usuarioLogueado.id %>">Creá tu cuenta <i class="far fa-address-card"></i></a>
+                        </li>
+                        <li>
+                            <a href="/profile/<%= locals.usuarioLogueado.id %>">Ingresá <i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                        <li>
+                            <span class="user-greeting">¡Hola <%=locals.usuarioLogueado.nombre%>!</span>
+                        </li>
+                        <li>
+                            <a href="/profile/<%= locals.usuarioLogueado.id %>">
+                                <i class="fas fa-user"></i>
+                                <%= locals.usuarioLogueado.nombre %>
+                            </a>
+                        </li>
+                        <li>
+                            <form action="/profile/logout" method="get">
+                                <button type="submit">
+                                    Cerrar sesión <i class="fas fa-sign-in-alt"></i>
+                                </button>
+                            </form>
+                        </li>
+                    <% } %>
 				</ul>
 			</nav>
 		</div>
